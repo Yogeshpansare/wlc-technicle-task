@@ -1,0 +1,103 @@
+<?php
+// Your code here!
+/* 
+Restaurant has 3 dishes Dosa, Meduvada, Idli
+Dosa - Rs.150
+Meduvada - Rs.50
+Idli - Rs.80
+If a person has 500 budget how much Dosa, Meduvada, Idli person can eat
+List all possible combinations where person eats at least 1 of each dish and print the balance remanining as well
+*/ 
+$budget = 500;
+$dosaprice = 150;
+$menduvadaprice = 50;
+$idliprice = 50;
+
+
+$combination = [];
+
+for ($numdosa = 1; $numdosa * $dosaprice <= $budget; $numdosa++)
+{
+    for ($nummenduvada = 1; $nummenduvada * $menduvadaprice <= $budget; $nummenduvada++)
+    {
+         for ($numidli = 1; $numidli * $idliprice <= $budget; $numidli++) 
+         {
+             $totalPrice = ($numdosa * $dosaprice) + ($nummenduvada * $menduvadaprice) + ($numidli * $idliprice);
+             if ($totalPrice <= $budget)
+             {
+                 $combinations[]=['dosa' => $numdosa,'menduVada' => $nummenduvada,'idli' => $numidli,'remainingBalance' => $budget - $totalPrice];
+                 // code...
+             }
+         }
+    }
+     // code...
+}
+foreach ($combinations as $combination){
+    echo "Dosa: " . $combination['dosa'] . ",";
+    echo "Mendu Vada: " . $combination['menduVada'] . ",";
+    echo "Idli: " . $combination['idli'] . ",";
+    echo "Remaining Balance: " . $combination['remainingBalance'] . "<br>";
+    
+}
+
+
+?>
+
+<!--output==(0.03 sec)-->-->
+
+<!--Text-->
+ 
+<!--Dosa: 1,Mendu Vada: 1,Idli: 1,Remaining Balance: 250<br>Dosa: 1,Mendu Vada: 1,Idli: 2,Remaining Balance: 200<br>Dosa: 1,Mendu Vada: 1,Idli: 3,Remaining Balance: 150<br>-->
+<!--Dosa: 1,Mendu Vada: 1,Idli: 4,Remaining Balance: 100<br>Dosa: 1,Mendu Vada: 1,Idli: 5,Remaining Balance: 50<br>Dosa: 1,Mendu Vada: 1,Idli: 6,Remaining Balance: 0-->
+<!--<br>Dosa: 1,Mendu Vada: 2,Idli: 1,Remaining Balance: 200<br>Dosa: 1,Mendu Vada: 2,Idli: 2,Remaining Balance: 150<br>Dosa: 1,Mendu Vada: 2,Idli: 3,Remaining Balance: 100-->
+<!--<br>Dosa: 1,Mendu Vada: 2,Idli: 4,Remaining Balance: 50<br>Dosa: 1,Mendu Vada: 2,Idli: 5,Remaining Balance: 0<br>Dosa: 1,Mendu Vada: 3,Idli: 1,Remaining Balance: 150-->
+<!--<br>Dosa: 1,Mendu Vada: 3,Idli: 2,Remaining Balance: 100<br>Dosa: 1,Mendu Vada: 3,Idli: 3,Remaining Balance: 50<br>Dosa: 1,Mendu Vada: 3,Idli: 4,Remaining Balance: 0-->
+<!--<br>Dosa: 1,Mendu Vada: 4,Idli: 1,Remaining Balance: 100<br>Dosa: 1,Mendu Vada: 4,Idli: 2,Remaining Balance: 50<br>Dosa: 1,Mendu Vada: 4,Idli: 3,Remaining Balance: 0-->
+<!--<br>Dosa: 1,Mendu Vada: 5,Idli: 1,Remaining Balance: 50<br>Dosa: 1,Mendu Vada: 5,Idli: 2,Remaining Balance: 0<br>Dosa: 1,Mendu Vada: 6,Idli: 1,Remaining Balance: 0-->
+<!--<br>Dosa: 2,Mendu Vada: 1,Idli: 1,Remaining Balance: 100<br>Dosa: 2,Mendu Vada: 1,Idli: 2,Remaining Balance: 50<br>Dosa: 2,Mendu Vada: 1,Idli: 3,Remaining Balance: 0-->
+<!--<br>Dosa: 2,Mendu Vada: 2,Idli: 1,-->
+<!--Remaining Balance: 50<br>Dosa: 2,Mendu Vada: 2,Idli: 2,Remaining Balance: 0<br>Dosa: 2,Mendu Vada: 3,Idli: 1,Remaining Balance: 0<br>-->
+
+
+
+
+
+
+
+
+<?php
+// There are a number of servers running our application.
+
+// Given N servers, in 5 minutes interval, every minute, the load is checked and if load is
+// less than 50%, the servers are either reduced to N/2 else they are increased to
+// 2N + 1
+
+// Input : No. of servers (N), server load every minute
+
+// Output : The number of servers running at the end of 5 minutes
+
+// Example:
+
+// Input:
+// 2 (2 servers)
+// 10 60 50 15 20 (On 1st minute - 10% load, on 2nd minute - 60% load & so on)
+
+// Output:
+// 1 (After 5 minute, 1 server is running)
+
+$server = 2;
+$load = [10, 60, 50, 15, 20];
+
+//your code here
+foreach ($load as $currentLoad){
+    if($currentLoad < 50){
+        $server = ceil($server / 2);
+    } else {
+        $server = 2 * $server +1;
+    }
+    
+}
+
+print($server);
+?>
+output=2
